@@ -24,7 +24,7 @@ namespace TerraformPrivateRegistry.Core
         {
             string providerDirectory = Path.Combine(this.basePath, ns, type);
             string providerVersionsFile = Path.Combine(providerDirectory, "versions.json");
-            this.logger.LogDebug("Looking in {0} for provider versions.json file");
+            this.logger.LogDebug("Looking in {0} for provider versions.json file", providerVersionsFile);
 
             if (!Directory.Exists(providerDirectory))
             {
@@ -62,7 +62,7 @@ namespace TerraformPrivateRegistry.Core
                 return null;
             }
 
-            string providerMetadataFile = Path.Combine(providerVersionDirectory, "metadata.json");
+            string providerMetadataFile = Path.Combine(providerVersionDirectory, string.Format("metadata_{0}_{1}.json", os, arch));
 
             if (cancellationToken.IsCancellationRequested)
                 return null;

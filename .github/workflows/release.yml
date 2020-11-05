@@ -1,10 +1,9 @@
-name: .NET Core
+name: Release TerraformPrivateRegistry
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+    - '*'
 
 jobs:
   build:
@@ -23,3 +22,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Release
+      run: dotnet publish -o ./publish -c Release --no-restore
+    - name: Create zip
+      run: zip -r ./publish ./publish publish.zip

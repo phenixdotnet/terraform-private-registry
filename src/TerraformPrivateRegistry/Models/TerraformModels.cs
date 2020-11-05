@@ -52,4 +52,13 @@ namespace TerraformPrivateRegistry.Models
         [JsonPropertyName("signing_keys")]
         public TerraformSigningKeys SigningKeys { get; }
     }
+
+    public record TerraformIndex
+    {
+        public TerraformIndex(string providersUrlV1)
+            => (ProvidersUrlV1) = (providersUrlV1);
+
+        [JsonPropertyName("providers.v1")]
+        public string ProvidersUrlV1 { get; }
+    }
 }

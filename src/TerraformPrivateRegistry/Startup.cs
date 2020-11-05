@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TerraformPrivateRegistry.Core;
+using TerraformPrivateRegistry.Models;
 
 namespace TerraformPrivateRegistry
 {
@@ -29,6 +30,7 @@ namespace TerraformPrivateRegistry
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new TerraformIndex("/v1/providers/"));
             services.AddSingleton<IProviderRepository>((services) =>
             {
                 var logger = services.GetService<ILogger<LocalStorageProviderRepository>>();
